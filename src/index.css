@@ -1,6 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 body {
+  background: rgb(139, 139, 139);
+  background: linear-gradient(0deg, rgb(205, 203, 203) 0%, rgb(226, 226, 226) 48%, rgba(248, 248, 248, 1) 100%) no-repeat fixed;
   margin: 0;
   font-family: 'Roboto', 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
