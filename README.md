@@ -1,3 +1,6 @@
+## GitHub Pages ##
+<a href="https://millerm30.github.io/react-todolist/" target="blank">Note App</a>
+
 ## 🚀 About Me
 I'm currently a student with [Get Coding](http://www.get-coding.ca) completing Full Stack Development.
 
