@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { FaTrashAlt } from "react-icons/fa";
+import { FaEdit } from "react-icons/fa";
 
 const TodoItem = (props) => {
   const [editing, setEditing] = useState(false)
@@ -47,7 +48,10 @@ const TodoItem = (props) => {
           checked={completed}  
           onChange={() => props.handleChangeProps(id)}
         />
-        <button onClick={() => props.deleteTodoProps(id)} className="text-2xl bg-white border-none cursor-pointer float-right mt-1 outline-none">
+        <button onClick={handleEditing} className="bg-white border-none cursor-pointer float-right outline-none">
+          <FaEdit className="text-red-700 text-2xl ml-4"/>
+        </button>
+        <button onClick={() => props.deleteTodoProps(id)} className="bg-white border-none cursor-pointer float-right mt-1 outline-none">
           <FaTrashAlt className="text-orange-500 text-lg" />
         </button>
         <span style={completed ? completedStyle : null} >{title}</span>
