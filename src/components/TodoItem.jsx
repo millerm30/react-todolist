@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from "react"
-import styles from "./Todoitem.module.css"
+import React, { useState, useEffect } from "react";
 import { FaTrashAlt } from "react-icons/fa";
 
 const TodoItem = (props) => {
@@ -13,20 +12,20 @@ const TodoItem = (props) => {
 
   const handleEditing = () => {
     setEditing(true)
-  } 
+  };
 
   const handleUpdatedDone = (event) => {
     if (event.key === "Enter" ) {
       setEditing(false)
     }
-  }
+  };
 
   const completedStyle = {
     fontStyle: "italic",
     color: "#595959",
     opacity: 0.4,
     textDecoration: "line-through",
-  }
+  };
 
   const { completed, id, title } = props.todo
   
@@ -37,26 +36,26 @@ const TodoItem = (props) => {
     viewMode.display = 'none';
   } else {
     editMode.display = 'none';
-  }
+  };
 
   return (
-    <li className={styles.item}>
-      <div onDoubleClick={handleEditing} style={viewMode}>
+    <li className="text-xl list-none px-4 py-0 border-b-2 border-dotted border-[#ccc]">
+      <div onDoubleClick={handleEditing} style={viewMode} className="my-2">
         <input 
           type="checkbox" 
-          className={styles.checkbox}
+          className="mr-4 ml-2"
           checked={completed}  
           onChange={() => props.handleChangeProps(id)}
         />
-        <button onClick={() => props.deleteTodoProps(id)}>
-          <FaTrashAlt style={{color: "orangered", fontSize: "16px"}}/>
+        <button onClick={() => props.deleteTodoProps(id)} className="text-2xl bg-white border-none cursor-pointer float-right mt-1 outline-none">
+          <FaTrashAlt className="text-orange-500 text-lg" />
         </button>
         <span style={completed ? completedStyle : null} >{title}</span>
       </div>
       <input 
         type="text" 
         style={editMode} 
-        className={styles.textInput} 
+        className="w-full p-2" 
         value={title} 
         onChange={(e)=> {props.setUpdate(e.target.value, id)}}
         onKeyDown={handleUpdatedDone}
