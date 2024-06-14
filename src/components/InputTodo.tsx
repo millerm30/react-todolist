@@ -1,19 +1,20 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { FaCheck } from "react-icons/fa";
+import { InputTodoProps, InputTodoField } from "../../types";
 
-const InputTodo = (props) => {
-  const [inputText, setInputText] = useState({
+const InputTodo: React.FC<InputTodoProps> = (props) => {
+  const [inputText, setInputText] = useState<InputTodoField>({
     title: "",
   });
 
-  const onChange = (e) => {
+  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputText({
       ...inputText,
       [e.target.name]: e.target.value,
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (inputText.title.trim()) {
       props.addTodoProps(inputText.title);

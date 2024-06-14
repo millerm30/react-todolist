@@ -1,12 +1,13 @@
-import React, {useState, useEffect} from "react";
+import {useState, useEffect} from "react";
+import { v4 as uuidv4 } from "uuid";
 import Header from "./TodoHeader";
 import Footer from "./TodoFooter";
 import InputTodo from "./InputTodo";
 import TodosList from "./TodoList";
-import { v4 as uuidv4 } from "uuid";
+import { Todo } from "../../types";
 
 const TodoContainer = () => {
-  const [todos, setTodos] = useState(getInitialTodos());
+  const [todos, setTodos] = useState<Todo[]>(getInitialTodos());
 
   useEffect(() => {
     const temp = JSON.stringify(todos)
@@ -15,12 +16,15 @@ const TodoContainer = () => {
 
   function getInitialTodos() {
     const temp = localStorage.getItem("todos")
+    if (temp === null) {
+      return []
+    }
     const savedTodos = JSON.parse(temp)
     return savedTodos || []
   };
 
-  const handleChange = id => {
-    setTodos(prevState => prevState.map((todo) => {
+  const handleChange = (id: string) => {
+    setTodos((prevState: Todo[]) => prevState.map((todo) => {
       if (todo.id === id) {
         return {
           ...todo, completed: !todo.completed
@@ -30,7 +34,7 @@ const TodoContainer = () => {
     }))
   };
 
-  const delTodo = id => {
+  const delTodo = (id: string) => {
     setTodos([
       ...todos.filter(todo => {
         return todo.id !== id
@@ -38,7 +42,7 @@ const TodoContainer = () => {
     ])
   };
 
-  const addTodoItem = title => {
+  const addTodoItem = (title: string) => {
     const newTodo = {
       id: uuidv4(),
       title: title,
@@ -47,7 +51,7 @@ const TodoContainer = () => {
     setTodos([...todos, newTodo])
   };
 
-  const setUpdate = (updatedTitle, id) => {
+  const setUpdate = (updatedTitle: string, id: string) => {
     setTodos(
       todos.map(todo => {
         if (todo.id === id) {
